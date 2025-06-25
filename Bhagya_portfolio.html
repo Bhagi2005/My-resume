@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhagya - CV</title>
+
+    <style>
+        /* --- Custom Fonts (Self-Hosted Example) --- */
+        /* IMPORTANT: For these fonts to work, you must have the font files
+           (e.g., Montserrat-Regular.woff2, Roboto-Regular.woff2)
+           in a 'fonts/' directory relative to where this HTML file is located.
+           If you don't have these files, the browser will fall back to Arial/sans-serif.
+        */
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('fonts/Montserrat-Regular.woff2') format('woff2'),
+                 url('fonts/Montserrat-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('fonts/Montserrat-Bold.woff2') format('woff2'),
+                 url('fonts/Montserrat-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            src: url('fonts/Roboto-Regular.woff2') format('woff2'),
+                 url('fonts/Roboto-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Roboto';
+            src: url('fonts/Roboto-Bold.woff2') format('woff2'),
+                 url('fonts/Roboto-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* --- End Custom Fonts --- */
+
+        /* Basic Reset & Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(45deg, #f0f2f5, #e6e9ee);
+            background-size: 400% 400%;
+            animation: backgroundShift 15s ease infinite;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Background Gradient Animation */
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Robot Avatar Animation --- */
+        #robot-avatar-container {
+            position: fixed;
+            bottom: 30px; /* Distance from bottom */
+            left: 30px;  /* Distance from left */
+            z-index: 90; /* Stacks below scroll-to-top, above most content */
+            pointer-events: none; /* Allows clicks to pass through */
+            animation: floatRobot 5s ease-in-out infinite alternate; /* Main float animation */
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); /* Subtle shadow */
+        }
+
+        @keyframes floatRobot {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); } /* Float up and slight tilt */
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Specific animation for the robot's "antenna" light */
+        #robot-avatar #antenna-light {
+            animation: pulseAntenna 1.5s ease-in-out infinite;
+            transform-origin: center center; /* Ensures scaling is from the circle's center */
+        }
+
+        @keyframes pulseAntenna {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        /* --- End Robot Avatar Animation --- */
+
+
+        .container, .container-sections {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            z-index: 2; /* Higher z-index than robot background */
+        }
+
+        .container:hover, .container-sections:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    70% { transform: scale(0.95); }
+    100% { transform: scale(1); opacity: 1; } /* ADDED opacity: 1; here */
+}
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #6A1B9A; }
+        }
+
+
+        /* Utility classes for scroll-reveal */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.1s;
+        }
+        .fade-in-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left-on-scroll {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.15s;
+        }
+        .slide-in-left-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right-on-scroll {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.2s;
+        }
+        .slide-in-right-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in-on-scroll {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.25s;
+        }
+        .scale-in-on-scroll.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #fff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            animation: fadeIn 0.8s ease-out;
+            position: relative; /* Ensure it's above other elements like robot if robot is fixed top */
+            z-index: 100;
+        }
+
+        .navbar .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #6A1B9A;
+            transition: transform 0.3s ease;
+        }
+        .navbar .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-left: 30px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 400;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative;
+        }
+
+        .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: #6A1B9A;
+            transition: width 0.3s ease-out;
+        }
+
+        .navbar ul li a:hover {
+            color: #6A1B9A;
+            transform: translateY(-3px);
+        }
+        .navbar ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Flex Container Styling */
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 300px;
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+            border-right: 1px solid #eee;
+            box-sizing: border-box;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 5px solid #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    animation: bounceIn 1s ease-out 0.5s forwards;
+    /* You can remove or comment out opacity: 0; here, as the animation's 0% handles it */
+    /* opacity: 0; */ /* You can keep this, but the animation will make it visible */
+    transition: transform 0.3s ease;
+}
+        .profile-photo:hover {
+            transform: scale(1.03) rotate(2deg);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .general-information {
+            text-align: left;
+            margin-top: 30px;
+            animation: fadeIn 0.8s ease-out 0.7s forwards;
+            opacity: 0;
+        }
+
+        .general-information h2 {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .general-information p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: #555;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .general-information p:hover {
+            color: #6A1B9A;
+            transform: translateX(5px);
+        }
+
+        .general-information p .icon {
+            margin-right: 8px;
+            font-size: 18px;
+            color: #888;
+        }
+
+        /* Main Content Styling (Right side of the first block) */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            box-sizing: border-box;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .main-content .header-info {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+            animation: fadeIn 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .freelance-status {
+            background-color: #e0ffe0;
+            color: #008000;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-right: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .freelance-status:hover {
+            background-color: #008000;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .download-cv-icon {
+            font-size: 28px;
+            color: #6A1B9A;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .download-cv-icon:hover {
+            transform: translateY(5px) scale(1.1);
+            color: #8A2BE2;
+        }
+
+        .main-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .main-content h1 .animated-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid transparent;
+            animation: typing 3.5s steps(40, end) forwards,
+                       blink-caret .75s step-end infinite;
+            animation-delay: 0.8s;
+            width: 0;
+        }
+
+        .main-content h1 {
+            animation: none;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .main-content h1 span {
+            color: #6A1B9A;
+            font-weight: 700;
+        }
+
+        .description {
+            animation: fadeIn 1s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+        .description h2 {
+            font-size: 24px;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .description p {
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Skills Overview Section (with SVG Progress Circles) */
+        .skills-overview {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .skill-item {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .progress-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotate(-90deg);
+        }
+
+        .progress-background {
+            fill: none;
+            stroke: #ddd;
+            stroke-width: 8;
+        }
+
+        .progress-foreground {
+            fill: none;
+            stroke: #6A1B9A;
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s ease-out;
+        }
+
+        .skill-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f8f8;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.2s;
+        }
+        .skill-content.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .circle-percentage {
+            font-size: 36px;
+            font-weight: bold;
+            color: #6A1B9A;
+            margin-bottom: 5px;
+        }
+
+        .skill-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .skill-item p {
+            font-size: 12px;
+            color: #888;
+            margin: 0;
+        }
+
+        /* Container for other sections (if you want them outside the main flex container) */
+        .container-sections {
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        .section-block {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            transition-delay: 0.1s;
+        }
+        .section-block.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: #6A1B9A;
+            border-radius: 2px;
+            animation: scaleIn 0.8s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+        .section-block.is-visible .section-title::after {
+            opacity: 1;
+        }
+
+
+        /* Timeline Styling (for Experience & Education) */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid #eee;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.1s;
+        }
+        .timeline-item.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background-color: #6A1B9A;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #6A1B9A;
+            transform: scale(0);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition-delay: 0.3s;
+        }
+        .timeline-item.is-visible::before {
+            transform: scale(1);
+        }
+
+
+        .timeline-date {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .timeline-content h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content h4 {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .timeline-content ul {
+            list-style: disc;
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .timeline-content ul li {
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Portfolio Grid Styling */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.1s;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .portfolio-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease-in-out;
+        }
+        .portfolio-item img:hover {
+            transform: scale(1.1);
+        }
+
+
+        .portfolio-item h3 {
+            font-size: 18px;
+            color: #333;
+            margin: 15px 15px 5px;
+        }
+
+        .portfolio-item p {
+            font-size: 14px;
+            color: #666;
+            margin: 0 15px 15px;
+        }
+
+        /* Service Item specific styles (if needed) */
+        .service-item {
+            /* Any unique styles for service items */
+        }
+
+        /* Testimonial Item specific styles */
+        .testimonial-item p {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .testimonial-item h4 {
+            font-weight: bold;
+            color: #6A1B9A;
+            margin-bottom: 5px;
+        }
+        .testimonial-item span {
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* Contact Info specific styles */
+        .contact-info > div {
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #fafafa;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-info > div:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+        }
+        .contact-info h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-item-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit text color from parent */
+    display: block; /* Make the link occupy the full card area */
+    height: 100%; /* Ensure the link covers the height of the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Apply hover effects to the link, not the inner div */
+}
+
+.portfolio-item-link:hover .portfolio-item {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Adjust the original portfolio-item hover if needed, or remove it */
+/* You might want to remove the direct hover on .portfolio-item since it's now on .portfolio-item-link */
+.portfolio-item:hover {
+    /* transform: translateY(-8px) rotate(-1deg); */ /* Remove or comment out this */
+    /* box-shadow: 0 10px 20px rgba(0,0,0,0.15); */ /* Remove or comment out this */
+}
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background-color: #333;
+            color: #f0f0f0;
+            font-size: 14px;
+            border-radius: 0 0 8px 8px;
+            animation: fadeIn 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        /* Scroll to Top Button */
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99; /* Higher than robot avatar */
+            border: none;
+            outline: none;
+            background-color: #6A1B9A;
+            color: white;
+            cursor: pointer;
+            padding: 15px 18px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        #scrollToTopBtn.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #8A2BE2;
+            transform: scale(1.05);
+        }
+
+
+        /* Basic Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+                margin: 10px;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 30px;
+            }
+
+            .main-content {
+                padding: 30px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .navbar ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar ul li {
+                margin: 5px 15px;
+            }
+
+            .main-content h1 {
+                font-size: 40px;
+            }
+
+            .skills-overview {
+                justify-content: center;
+            }
+
+            .container-sections {
+                padding: 30px;
+                margin: 10px;
+            }
+
+            #robot-avatar-container {
+                bottom: 20px;
+                left: 20px;
+                transform: scale(0.8); /* Make smaller on smaller screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content h1 {
+                font-size: 36px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+
+            .timeline {
+                padding-left: 15px;
+            }
+
+            .timeline-item {
+                padding-left: 15px;
+            }
+
+            .timeline-item::before {
+                left: -8px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .logo {
+                font-size: 20px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .main-content h1 {
+                font-size: 30px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+
+            .skill-item {
+                width: 120px;
+                height: 120px;
+            }
+            .progress-circle {
+                width: 120px;
+                height: 120px;
+            }
+            .progress-background, .progress-foreground {
+                stroke-width: 6;
+                r: 57;
+            }
+
+            .circle-percentage {
+                font-size: 30px;
+            }
+
+            .skill-name {
+                font-size: 14px;
+            }
+
+            .container-sections {
+                padding: 20px;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #robot-avatar-container {
+                bottom: 10px;
+                left: 10px;
+                transform: scale(0.6); /* Even smaller */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="robot-avatar-container">
+        <svg id="robot-avatar" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="20" width="20" height="20" rx="4" fill="#6A1B9A"/>
+            <circle cx="25" cy="15" r="10" fill="#8A2BE2"/>
+            <circle cx="21" cy="14" r="2" fill="white"/>
+            <circle cx="29" cy="14" r="2" fill="white"/>
+            <rect x="24" y="5" width="2" height="6" fill="#8A2BE2"/>
+            <circle cx="25" cy="5" r="3" fill="#6A1B9A" id="antenna-light"/> </svg>
+    </div>
+
+    <header class="navbar">
+        <div class="logo">Bhagya</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <aside class="sidebar">
+            <div class="profile-photo">
+                <img src="C:\Users\rajes\OneDrive\Pictures\Saved Pictures\Screenshots\Screenshot 2025-05-22 203555.png" alt="Bhagya">
+            </div>
+            <section class="general-information">
+                <h2>General Information</h2>
+                <p><span class="icon">&#9733;</span> Name: Maddala Bhagya Lakshmi Gayathri</p>
+                <p><span class="icon">&#9901;</span> Address:44-16-9/2A, venkateswara colony, Thatichetlapalem, Visakhapatnam, Andhra pradesh, India </p>
+                <p><span class="icon">&#128197;</span> Date of Birth: Feb 27, 2005</p>
+            </section>
+        </aside>
+
+        <section class="main-content">
+            <div class="header-info">
+                <span class="freelance-status">Available for internships and job(CSE related)</span>
+                <span class="download-cv-icon">&#x2193;</span>
+            </div>
+            <h1><span class="animated-text">Final year CSE Student</span> <br> <span> At Gitam University</span></h1>
+            <section class="description">
+                <h2 id="about">Description</h2>
+                <p>Hello! I'm Maddala Bhagya Lakshmi Gayathri, a passionate and driven Computer Science Engineering undergraduate from GITAM University. I am deeply interested in the fields of software development, machine learning, and data science. With a strong foundation in programming languages like Python, Java, and C++, I continuously strive to build innovative solutions and work on real-world projects.Throughout my academic journey, I’ve been actively involved in hackathons, technical workshops, and internships, gaining valuable hands-on experience. I’m also enthusiastic about web development and love creating clean, user-friendly interfaces.Outside of tech, I enjoy exploring creative hobbies like cooking, and I’m always eager to learn new things, whether it's a framework, a language, or a life skill. I believe in consistent growth and aspire to make a meaningful impact through my skills and dedication.</p>
+            </section>
+
+            <section class="skills-overview" id="skills">
+                <div class="skill-item">
+                    <svg class="progress-circle" width="150" height="150" viewBox="0 0 150 150">
+                        <circle class="progress-background" cx="75" cy="75" r="67"></circle>
+                        <circle class="progress-foreground" cx="75" cy="75" r="67" data-percentage="75"></circle>
+                    </svg>
+                    <div class="skill-content scale-in-on-scroll">
+                        <div class="circle-percentage">75%</div>
+                        <div class="skill-name">ADAPTABILITY</div>
+                        <p>Quick to learn new tools and languages.</p>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <svg class="progress-circle" width="150" height="150" viewBox="0 0 150 150">
+                        <circle class="progress-background" cx="75" cy="75" r="67"></circle>
+                        <circle class="progress-foreground" cx="75" cy="75" r="67" data-percentage="88"></circle>
+                    </svg>
+                    <div class="skill-content scale-in-on-scroll">
+                        <div class="circle-percentage">88%</div>
+                        <div class="skill-name">TEAM COLLABORATION</div>
+                        <p>Great at working in groups and projects.</p>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <svg class="progress-circle" width="150" height="150" viewBox="0 0 150 150">
+                        <circle class="progress-background" cx="75" cy="75" r="67"></circle>
+                        <circle class="progress-foreground" cx="75" cy="75" r="67" data-percentage="70"></circle>
+                    </svg>
+                    <div class="skill-content scale-in-on-scroll">
+                        <div class="circle-percentage">70%</div>
+                        <div class="skill-name">LEADERSHIP</div>
+                        <p>Leads college projects or teams.</p>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <svg class="progress-circle" width="150" height="150" viewBox="0 0 150 150">
+                        <circle class="progress-background" cx="75" cy="75" r="67"></circle>
+                        <circle class="progress-foreground" cx="75" cy="75" r="67" data-percentage="83"></circle>
+                    </svg>
+                    <div class="skill-content scale-in-on-scroll">
+                        <div class="circle-percentage">83%</div>
+                        <div class="skill-name">CREATIVITY</div>
+                        <p>Creative in UI design and innovative ideas.</p>
+                    </div>
+                </div>
+            </section>
+        </section> </main> <main class="container-sections">
+        <section id="experience" class="section-block fade-in-on-scroll">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item slide-in-left-on-scroll">
+                    <div class="timeline-date">01-Dec-2024 To 31-Jan-2025</div>
+                    <div class="timeline-content">
+                        <h3>Data Analyst intern</h3>
+                        <h4>Coratia Tehnologies</h4>
+                        <ul>
+                            <li>Developed and maintained client-side applications using HTML5, CSS3, and JavaScript.</li>
+                            <li>Collaborated with design and backend teams to implement new features.</li>
+                            <li>Optimized web performance and ensured cross-browser compatibility.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in-left-on-scroll">
+                    <div class="timeline-date">2017 - 2020</div>
+                    <div class="timeline-content">
+                        <h3>Junior Frontend Developer</h3>
+                        <h4>XYZ Solutions, Manchester</h4>
+                        <ul>
+                            <li>Assisted in building responsive web interfaces for various projects.</li>
+                            <li>Learned and applied modern frontend frameworks.</li>
+                            <li>Participated in code reviews and debugging sessions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section-block fade-in-on-scroll">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item slide-in-left-on-scroll">
+                    <div class="timeline-date">2014 - 2017</div>
+                    <div class="timeline-content">
+                        <h3>B.Sc. Computer Science</h3>
+                        <h4>University of London</h4>
+                        <p>Specialized in web development and user interface design.</p>
+                    </div>
+                </div>
+                <div class="timeline-item slide-in-left-on-scroll">
+                    <div class="timeline-date">2013 - 2014</div>
+                    <div class="timeline-content">
+                        <h3>A-Levels</h3>
+                        <h4>City College, London</h4>
+                        <p>Mathematics, Physics, Computer Science</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section-block fade-in-on-scroll">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item scale-in-on-scroll">
+                    <img src="https://via.placeholder.com/300x200?text=Project+1" alt="Project 1">
+                    <h3>Project Title One</h3>
+                    <p>A brief description of project one.</p>
+                </div>
+                <div class="portfolio-item scale-in-on-scroll">
+                    <img src="https://via.placeholder.com/300x200?text=Project+2" alt="Project 2">
+                    <h3>Project Title Two</h3>
+                    <p>A brief description of project two.</p>
+                </div>
+                <div class="portfolio-item scale-in-on-scroll">
+                    <img src="https://via.placeholder.com/300x200?text=Project+3" alt="Project 3">
+                    <h3>Project Title Three</h3>
+                    <p>A brief description of project three.</p>
+                </div>
+                <div class="portfolio-item scale-in-on-scroll">
+                    <img src="https://via.placeholder.com/300x200?text=Project+4" alt="Project 4">
+                    <h3>Project Title Four</h3>
+                    <p>A brief description of project four.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section-block fade-in-on-scroll">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid portfolio-grid">
+                <div class="service-item portfolio-item scale-in-on-scroll">
+                    <h3>Web Design</h3>
+                    <p>Creating visually appealing and user-friendly website designs.</p>
+                </div>
+                <div class="service-item portfolio-item scale-in-on-scroll">
+                    <h3>Frontend Development</h3>
+                    <p>Building responsive and interactive user interfaces with HTML, CSS, JS.</p>
+                </div>
+                <div class="service-item portfolio-item scale-in-on-scroll">
+                    <h3>UI/UX Consulting</h3>
+                    <p>Advising on user experience and interface best practices.</p>
+                </div>
+            </div>
+        </section>
+
+<section id="certifications" class="section-block fade-in-on-scroll">
+    <h2 class="section-title">Certifications</h2>
+    <div class="portfolio-grid">
+
+        <a href="your_hackathon_certificate.pdf" target="_blank" class="portfolio-item-link">
+            <div class="portfolio-item scale-in-on-scroll">
+                <video controls muted loop preload="metadata" style="width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #eee;">
+                    <source src="Blue Doodle Project Presentation.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <h3>Career Code Hackathon Certificate</h3>
+                <p>Participated in the "Career Code Hackathon", demonstrating strong problem-solving and rapid prototyping skills. This certification acknowledges successful completion and valuable contributions to the event.</p>
+                <span>**Issued by:** [Hackathon Organizer Name] | **Date:** [Date of Hackathon]</span>
+            </div>
+        </a>
+
+        <a href="your_python_certificate.pdf" target="_blank" class="portfolio-item-link">
+            <div class="portfolio-item scale-in-on-scroll">
+                <img src="Screenshot 2025-05-23 211656.jpg" alt="Python Certification" style="height: 150px; object-fit: contain; padding: 10px;">
+                <h3>Python for Data Science and Machine Learning</h3>
+                <p>Completed an intensive online certification program covering Python fundamentals, data manipulation (Pandas), scientific computing (NumPy), data visualization (Matplotlib, Seaborn), and machine learning algorithms (Scikit-learn).</p>
+                <span>Issued by: Coursera (IBM) | Date: March 2024</span>
+            </div>
+        </a>
+
+        <a href="your_webdev_certificate.pdf" target="_blank" class="portfolio-item-link">
+            <div class="portfolio-item scale-in-on-scroll">
+                <img src="https://via.placeholder.com/200x150/f0f0f0/333?text=Web+Dev+Cert" alt="Web Development Certification" style="height: 150px; object-fit: contain; padding: 10px;">
+                <h3>Responsive Web Design</h3>
+                <p>Achieved certification in building responsive and accessible web applications using HTML5, CSS3, and JavaScript best practices. Focused on mobile-first design and performance optimization.</p>
+                <span>Issued by: FreeCodeCamp | Date: July 2023</span>
+            </div>
+        </a>
+
+        <a href="your_sql_certificate.pdf" target="_blank" class="portfolio-item-link">
+            <div class="portfolio-item scale-in-on-scroll">
+                <img src="https://via.placeholder.com/200x150/f0f0f0/333?text=SQL+Cert" alt="SQL Certification" style="height: 150px; object-fit: contain; padding: 10px;">
+                <h3>SQL for Data Analysis</h3>
+                <p>Demonstrated proficiency in SQL for querying, manipulating, and analyzing large datasets. Covered topics like joins, subqueries, window functions, and database design principles.</p>
+                <span>Issued by: DataCamp | Date:January 2024</span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+        <section id="contact" class="section-block fade-in-on-scroll">
+            <h2 class="section-title">Contact</h2>
+            <p style="text-align: center; color: #555; margin-bottom: 30px;">Feel free to reach out for collaborations or inquiries.</p>
+            <div class="contact-info" style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <div style="text-align: center;" class="scale-in-on-scroll">
+                    <h3 style="color: #6A1B9A;">Email</h3>
+                    <p><a href="bhagya.maddala2005@gmail.com" style="color: #666; text-decoration: none;">bhagya.maddala2005@gmail.com</a></p>
+                </div>
+                <div style="text-align: center;" class="scale-in-on-scroll">
+                    <h3 style="color: #6A1B9A;">Phone</h3>
+                    <p>+91-9493891112</p>
+                </div>
+                <div style="text-align: center;" class="scale-in-on-scroll">
+                    <h3 style="color: #6A1B9A;">Address</h3>
+                    <p>44-16-9/2A,Venkateswara colony, thatichetlapalem,visakhapatnam,Andhra Pradesh </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Jeremy Smith. All rights reserved.</p>
+    </footer>
+
+    <button id="scrollToTopBtn" title="Go to top">&#9650;</button>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Progress Circle Animation (existing) ---
+            const animateProgressCircle = (circle) => {
+                const percentage = parseInt(circle.getAttribute('data-percentage'));
+                const radius = circle.r.baseVal.value;
+                const circumference = 2 * Math.PI * radius;
+
+                circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                circle.style.strokeDashoffset = circumference;
+
+                setTimeout(() => {
+                    const offset = circumference - (percentage / 100) * circumference;
+                    circle.style.strokeDashoffset = offset;
+                }, 50); // Small delay for animation to start
+            };
+
+            // --- Scroll Reveal Animation ---
+            const animateOnScrollElements = document.querySelectorAll(
+                '.fade-in-on-scroll, ' +
+                '.slide-in-left-on-scroll, ' +
+                '.slide-in-right-on-scroll, ' +
+                '.scale-in-on-scroll'
+            );
+
+            const observerOptions = {
+                root: null, /* viewport */
+                rootMargin: '0px',
+                threshold: 0.1 /* 10% of the element needs to be visible */
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+
+                        // If it's a skill content, also animate its SVG circle
+                        if (entry.target.classList.contains('skill-content')) {
+                            const svgCircle = entry.target.previousElementSibling.querySelector('.progress-foreground');
+                            if (svgCircle) {
+                                animateProgressCircle(svgCircle);
+                            }
+                        }
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            animateOnScrollElements.forEach(el => observer.observe(el));
+
+
+            // --- Scroll to Top Button Logic ---
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+            // When the user scrolls down 200px from the top of the document, show the button
+            window.onscroll = function() { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            scrollToTopBtn.addEventListener("click", function() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            });
+
+            // Initial check for elements already in view (above the fold)
+            animateOnScrollElements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight && el.getBoundingClientRect().bottom > 0) {
+                    el.classList.add('is-visible');
+                    if (el.classList.contains('skill-content')) {
+                        const svgCircle = el.previousElementSibling.querySelector('.progress-foreground');
+                        if (svgCircle) {
+                            animateProgressCircle(svgCircle);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
